@@ -9,5 +9,5 @@ load_dotenv()
 
 @cl.on_message
 async def main(message: str):
-    await cl.Message(comtent=f"Received:{message.content}",).send()
+    await cl.Message(content=f"Received:{message.content}",).send()
 
