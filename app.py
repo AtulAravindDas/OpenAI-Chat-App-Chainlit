@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 #print("Key loaded:", os.getenv("OPENAI_API_KEY"))  
-@cl.on_start
+@cl.on_chat_start
 
 async def on_start():
     await cl.Message(content="Hi, what can I do for you today?!").send()
