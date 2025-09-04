@@ -6,10 +6,10 @@ import os
 load_dotenv()
 
 #print("Key loaded:", os.getenv("OPENAI_API_KEY"))  
-@cl.on_chat_start
+'''@cl.on_chat_start
 
 async def on_start():
-    await cl.Message(content="Hi, what can I do for you today?!").send()
+    await cl.Message(content="Hi, what can I do for you today?!").send()''' #THis code snippet will be executed when the chat starts
 @cl.on_message
 async def main(message: cl.Message):
     await cl.Message(content=f"Received: {message.content}").send()
