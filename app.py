@@ -9,9 +9,8 @@ load_dotenv()
 @cl.on_chat_start
 
 async def on_start():
-    await cl.Message(content="Hi, what can I do for you today?!").send() #THis code snippet will be executed when the chat starts
     await cl.Message(
-        content="Hi",
+        content="Hi, what can I do for you today?!",
         elements=[
             cl.Image(
                 name="demo",
