@@ -10,17 +10,7 @@ load_dotenv()
 
 async def on_start():
     await cl.Message(content="Hi, what can I do for you today?!").send() #THis code snippet will be executed when the chat starts
-    await cl.Message(
-        content="Here’s the demo GIF 👇",
-        elements=[
-            cl.Image(
-                name="demo",
-                display="inline",
-                url="https://raw.githubusercontent.com/AtulAravindDas/OpenAI-Chat-App-Chainlit/main/assets/Hi.gif"
-                # or: url="https://github.com/AtulAravindDas/OpenAI-Chat-App-Chainlit/blob/main/assets/Hi.gif?raw=1"
-            )
-        ],
-    ).send()
+    image = cl.Image(path="./hi.gif", name="Hi", display="inline")
 @cl.on_message
 async def main(message: cl.Message):
     await cl.Message(content=f"Received: {message.content}").send()
