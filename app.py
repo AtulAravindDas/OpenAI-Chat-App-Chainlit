@@ -10,7 +10,7 @@ load_dotenv()
 
 async def on_start():
     await cl.Message(content="Hi, what can I do for you today?!").send() #THis code snippet will be executed when the chat starts
-    image = cl.Image(path="./hi.gif", name="Hi", display="inline")
+    image = cl.Image(path="./Hi.gif", name="Hi", display="inline")
 @cl.on_message
 async def main(message: cl.Message):
     await cl.Message(content=f"Received: {message.content}").send()
