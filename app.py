@@ -1,10 +1,20 @@
 import chainlit as cl
-from openai import OpenAI
+from openai import AsyncOpenAI
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
+settings = {
+    "model": "gpt-4.1",
+    "temperature": 0,
+    "max_tokens": 900,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0,
+    "stop": ["```"],
+}
+client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 #print("Key loaded:", os.getenv("OPENAI_API_KEY"))  
 @cl.on_chat_start
 
@@ -20,9 +30,18 @@ async def on_start():
             )
         ],
     ).send()
+    
+
 @cl.on_message
 async def main(message: cl.Message):
-    await cl.Message(content=f"Received: {message.content}").send()
+    stream=client.chat.completions.create(messages=[
+        {"role": "user", "content": message.content}],stream=True,**settings)
+    msg=await cl.Message(content="").send()
+    async for chunk in stream:
+        if token := chunk.choices[0].delta.content:
+            await msg.stream_token(token)
+            
+    await msg.update()
 
 '''@cl.set_starters
 async def set_starters():
