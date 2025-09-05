@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 settings = {
-    "model": "gpt-4.1",
+    "model": "gpt-3.5-turbo",
     "temperature": 0,
     "max_tokens": 900,
     "top_p": 1,
